@@ -31,8 +31,6 @@ for (let [key, value] of Object.entries(router.delete)) {
   app.delete(key, value)
 }
 
-// app.get('/', twitterController.getTweets)
-
 
 
 app.listen(3000, () => {
