@@ -13,6 +13,8 @@
   "author": "AhmedAbd-Allah",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.6.0",
+    "uuidv4": "^4.0.0"
   }
 }
