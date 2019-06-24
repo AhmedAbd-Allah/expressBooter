@@ -1,5 +1,9 @@
 {
     "port": "3000",
-    "MONGO_URI": "mongodb://localhost:27017/expressBooter"
+    "MONGO_URI": "mongodb://localhost:27017/expressBooter",
+    "encryptionKEY": "123456",
+    "encryptionAlgorithm":"aes-256-ctr",
+    "inputEncoding": "utf8",
+    "outputEncoding": "hex"
 
 }
