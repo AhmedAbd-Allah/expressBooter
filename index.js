@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const Router = require('./routes')
-const Config = require('./Config')
+const Config = require('./Config/Config')
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
 const dbURI = process.env.MONGO_URI? process.env.MONGO_URI : Config.MONGO_URI;
 
 
@@ -10,6 +11,9 @@ const dbURI = process.env.MONGO_URI? process.env.MONGO_URI : Config.MONGO_URI;
 
 // Start database connection
 mongoose.connect(dbURI, { useNewUrlParser: true });
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // allow cross origin
 app.use(function (req, res, next) {

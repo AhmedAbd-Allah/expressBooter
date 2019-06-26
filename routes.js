@@ -1,11 +1,13 @@
-const authenticationController = require('./Controllers/AuthenticationController')
+const authenticationController = require('./Controllers/AuthenticationController');
+const registrationController = require('./Controllers/RegistrationController');
+const paramsMiddleware = require('./Middlewares/ParamsMiddleware');
+const validationMiddleware = require('./Middlewares/ValidationMiddleware')
+
 module.exports = {
     get:{
-        '/':authenticationController.auth,
-        '/in': [authenticationController.midlle, authenticationController.in]
     },
     post:{
-        '/':authenticationController.authPost,
+        '/register':[paramsMiddleware, validationMiddleware],
     },
     put:{
 
@@ -13,4 +15,5 @@ module.exports = {
     delete:{
 
     }
+    //, validationMiddleware, registrationController.register
 }
