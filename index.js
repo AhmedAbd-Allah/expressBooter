@@ -4,16 +4,16 @@ const Router = require('./routes')
 const Config = require('./Config/Config')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
-const dbURI = process.env.MONGO_URI? process.env.MONGO_URI : Config.MONGO_URI;
-
-
-
+const dbURI = process.env.MONGO_URI ? process.env.MONGO_URI : Config.MONGO_URI;
 
 // Start database connection
-mongoose.connect(dbURI, { useNewUrlParser: true });
+mongoose.connect(dbURI, { useNewUrlParser: true }, function (err, data) {
+  if (err)
+    console.log(err)
+});
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json({ extended: false }));
 
 // allow cross origin
 app.use(function (req, res, next) {
@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 });
 
 // Router
-for(let [method,routes] of Object.entries(Router)){
+for (let [method, routes] of Object.entries(Router)) {
   for (let [url, requestHandler] of Object.entries(Router[method])) {
     app[method](url, requestHandler)
   }

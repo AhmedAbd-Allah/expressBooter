@@ -27,10 +27,10 @@ module.exports = {
   },
 
   hashData: function (data) {
-    var hash = crypto.createHash('sha256');
-    var hashedData = hash.update(data, 'utf-8');
-    hashedData.digest('hex');
-    return hashedData
+    var hash = crypto.createHash('sha256')
+      .update(data, 'utf-8')
+      .digest('hex');
+    return hash
   }
 
 

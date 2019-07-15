@@ -3,37 +3,36 @@ const Schema = mongoose.Schema;
 const uuid = require('uuidv4');
 
 const userSchema = new Schema({
-    _id: false,
-    userId: {
-        type:String,
+    _id: {
+        type: String,
         default: uuid()
     },
-    userName:{
-        type:String
+    userName: {
+        type: String
     },
-    userRole:{
-        type:String
+    userRole: {
+        type: String
     },
-    email:{
-        type:String
+    email: {
+        type: String
     },
-    mobileNumber:{
-        type:String
+    mobileNumber: {
+        type: String
     },
-    profile_image_url:{
-        type:String
+    profile_image_url: {
+        type: String
     },
-    password:{
-        type:String
+    password: {
+        type: String
     },
-    accessToken:{
-        type:String
+    accessToken: {
+        type: String
     },
-    refreshToken:{
-        type:String
+    refreshToken: {
+        type: String
     }
-},{timestamps: true});
+}, { timestamps: true });
 
-mongoose.model('User',userSchema);
+mongoose.model('User', userSchema);
 
 module.exports = mongoose.model('User');

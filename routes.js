@@ -4,16 +4,15 @@ const paramsMiddleware = require('./Middlewares/ParamsMiddleware');
 const validationMiddleware = require('./Middlewares/ValidationMiddleware')
 
 module.exports = {
-    get:{
+    get: {
     },
-    post:{
-        '/register':[paramsMiddleware, validationMiddleware],
+    post: {
+        '/register': [paramsMiddleware, validationMiddleware, registrationController.register],
     },
-    put:{
+    put: {
 
     },
-    delete:{
+    delete: {
 
     }
-    //, validationMiddleware, registrationController.register
 }
