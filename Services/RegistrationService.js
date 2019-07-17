@@ -11,7 +11,8 @@ module.exports = {
                 email: req.body.email,
                 mobileNumber: req.body.mobileNumber,
                 password: encryptionService.hashData(String(req.body.password)),
-                profile_image_url: req.body.profile_image_url
+                profile_image_url: req.body.profile_image_url,
+                userRole: 'user'
             }
 
             return await userModel.create(userToRegister)

@@ -8,7 +8,7 @@ const outputEncoding = Config.outputEncoding;
 
 module.exports = {
 
-  encryptData: function (value) {
+  encryptData: value => {
     const iv = new Buffer(randomBytes(16));
     const cipher = createCipheriv(algorithm, privateKey, iv);
     let crypted = cipher.update(value, inputEncoding, outputEncoding);
@@ -16,7 +16,7 @@ module.exports = {
     return `${iv.toString('hex')}:${crypted.toString()}`;
   },
 
-  decryptData: function (value) {
+  decryptData: value => {
     const textParts = value.split(':');
     const IV = new Buffer(textParts.shift(), outputEncoding);
     const encryptedText = new Buffer(textParts.join(':'), outputEncoding);
@@ -26,7 +26,7 @@ module.exports = {
     return decrypted.toString();
   },
 
-  hashData: function (data) {
+  hashData: data => {
     var hash = crypto.createHash('sha256')
       .update(data, 'utf-8')
       .digest('hex');

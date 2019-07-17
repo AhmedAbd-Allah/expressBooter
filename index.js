@@ -4,6 +4,7 @@ const Router = require('./routes')
 const Config = require('./Config/Config')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+const expressSanitizer = require('express-sanitizer');
 const dbURI = process.env.MONGO_URI ? process.env.MONGO_URI : Config.MONGO_URI;
 
 // Start database connection
@@ -11,6 +12,10 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, function (err, data) {
   if (err)
     console.log(err)
 });
+
+// sanitize the request
+app.use(expressSanitizer());
+
 
 // parse application/json
 app.use(bodyParser.json({ extended: false }));
@@ -32,7 +37,7 @@ for (let [method, routes] of Object.entries(Router)) {
   }
 }
 
-
+// server up
 app.listen(Config.port, () => {
   console.log("Server is on and listening on port ", Config.port);
 });

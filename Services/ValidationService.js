@@ -1,7 +1,4 @@
 module.exports = {
-    validateToken: function (token) {
-        return token.userId && token.isActive
-    },
     alphaNumeric: function (value) {
         value = String(value)
         let alphaNumericRegex = /^[a-z0-9]+$/i

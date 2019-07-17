@@ -4,8 +4,13 @@ module.exports = {
             'userName': true,
             'password': true,
             'email': true,
-            'mobileNumber': true
+            'mobileNumber': true,
         },
-
+    },
+    'post /login': {
+        'body': {
+            'userName': true,
+            'password': true,
+        }
     }
 }
