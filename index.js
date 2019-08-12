@@ -2,16 +2,24 @@ const express = require('express');
 const app = express();
 const Router = require('./routes')
 const Config = require('./Config/Config')
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const expressSanitizer = require('express-sanitizer');
-const dbURI = process.env.MONGO_URI ? process.env.MONGO_URI : Config.MONGO_URI;
+const database = require('./Config/database')
 
-// Start database connection
-mongoose.connect(dbURI, { useNewUrlParser: true }, function (err, data) {
-  if (err)
-    console.log(err)
-});
+
+
+try {
+  database.connectToDatabase(Config.database.host,
+    Config.database.port,
+    Config.database.type,
+    Config.database.name,
+    Config.database.userName,
+    Config.database.password)
+
+} catch (error) {
+  console.log("Error in database connection:", error)
+}
+
 
 // sanitize the request
 app.use(expressSanitizer());
@@ -29,6 +37,8 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
+
 
 // Router
 for (let [method, routes] of Object.entries(Router)) {
